@@ -131,7 +131,7 @@ Author URL: http://w3layouts.com
                                 </a>
                                 <p>diana adalah seorang pembunuh iya.</p>
                                 <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
+                                    <a href="#author">hahahah</a> in <a href="#url">Design</a>
                                 </div>
                                 <ul class="blog-meta">
                                     <li class="meta-item blog-lesson">
@@ -145,7 +145,7 @@ Author URL: http://w3layouts.com
                             <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/8.jpg"
                                     alt="" class="img-fluid radius-image news-image"></a>
                         </div>
-                        <div class="grids5-info img-block-mobile">
+                        <!-- <div class="grids5-info img-block-mobile">
                             <div class="blog-info align-self">
                                 <span class="category">Technology</span>
                                 <a href="#blog-single" class="blog-desc mt-0">Curated Collection Post : 8 Examples of
@@ -167,7 +167,7 @@ Author URL: http://w3layouts.com
                             </div>
                             <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/8.jpg"
                                     alt="" class="img-fluid radius-image news-image"></a>
-                        </div>
+                        </div> -->
 
                         <div class="grids5-info img-block-mobile mt-5">
                             <div class="blog-info align-self">
