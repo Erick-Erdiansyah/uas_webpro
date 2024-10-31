@@ -99,18 +99,34 @@
                                     </tr>
                                 </tfoot>
                                 <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>
-                                            <button class="btn btn-warning">ubah</button>
-                                            <button class="btn btn-danger">hapus</button>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    require '../controller/koneksi.php';
+
+                                    $sql = "SELECT * FROM post";
+                                    $result = $conn->query($sql);
+
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            ?>
+                                            <tr>
+                                                <td><?= $row['judul']; ?></td>
+                                                <td><?= $row['deskripsi']; ?></td>
+                                                <td><?= $row['image']; ?></td>
+                                                <td><?= $row['read']; ?></td>
+                                                <td><?= $row['author']; ?></td>
+                                                <td><?= $row['kategori']; ?></td>
+                                                <td>
+                                                    <button class="btn btn-warning">ubah</button>
+                                                    <a class="btn btn-danger" href='../controller/delete.php?id=<?= $row['id']; ?>' onclick="return alert('hello world')">hapus</a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "0 hasil";
+                                    }
+                                    $conn->close();
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

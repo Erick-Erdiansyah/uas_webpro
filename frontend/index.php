@@ -152,7 +152,7 @@ Author URL: http://w3layouts.com
                                             </li>
                                         </ul>
                                     </div>
-                                    <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/8.jpg"
+                                    <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="../controller/uploads/<?= $row['image']; ?>"
                                             alt="" class="img-fluid radius-image news-image"></a>
                                 </div>
                                 <?php

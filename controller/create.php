@@ -51,7 +51,7 @@ $image = basename($_FILES["image"]["name"]);
 
 $sql = "INSERT INTO post (judul, deskripsi,author,kategori,image) VALUES ('$judul', '$deskripsi','$author','$kategori','$image')";
 if ($conn->query($sql) === TRUE) {
-  header("location:index.php");
+  header("location:../admin/index.php");
 } else {
   echo "Error: {$sql} <br> {$conn->error}";
 }
