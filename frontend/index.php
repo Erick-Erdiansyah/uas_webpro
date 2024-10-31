@@ -111,7 +111,7 @@ Author URL: http://w3layouts.com
             <?php
             require '../controller/koneksi.php';
 
-            $sql = "SELECT * FROM post";
+            $sql = " SELECT post.*, author.nama AS author, kategori.nama AS kategori  FROM post JOIN author ON post.author_id = author.id JOIN kategori ON post.kategori_id = kategori.id";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {

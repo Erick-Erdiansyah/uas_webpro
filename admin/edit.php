@@ -81,12 +81,25 @@ if (isset($_SESSION['login'])) {
                 tambah artikel
               </div>
               <div class="card-body">
-                <form action="../controller/create.php" method="POST" enctype="multipart/form-data">
+                <?php
+
+                require '../controller/koneksi.php';
+
+                $id = $_GET['id'];
+
+                $sql = "SELECT * FROM post WHERE id = '$id'";
+
+                $result = $conn->query($sql);
+
+                $data = $result->fetch_array();
+                ?>
+
+                <form action="../controller/update.php" method="POST" enctype="multipart/form-data">
                   <div class="input-group flex-nowrap mb-3">
-                    <input type="text" class="form-control" id="dropdownInput" name="kategori" placeholder="Select a category"
-                      aria-label="Input with dropdown" readonly />
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown" aria-expanded="false">
+                    <input type="text" disabled class="form-control" id="dropdownInput" name="kategori"
+                      placeholder="Select a category" aria-label="Input with dropdown" readonly />
+                    <button disabled class="btn btn-outline-secondary dropdown-toggle" type="button"
+                      id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Select
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -116,20 +129,22 @@ if (isset($_SESSION['login'])) {
                     }
                   </script>
                   <div class="input-group flex-nowrap mb-3">
+                    <input type="text" hidden class="form-control" placeholder="Judul" aria-label="Judul" name="id"
+                      aria-describedby="addon-wrapping" value="<?= $data['id']; ?>">
                     <input type="text" class="form-control" placeholder="Judul" aria-label="Judul" name="judul"
-                      aria-describedby="addon-wrapping">
+                      aria-describedby="addon-wrapping" value="<?= $data['judul']; ?>">
                   </div>
                   <div class="form-floating mb-3">
-                    <textarea class="form-control" placeholder="isi artikel" id="floatingTextarea"
-                      name="deskripsi"></textarea>
+                    <textarea class="form-control" placeholder="isi artikel" id="floatingTextarea" name="deskripsi"
+                      value="<?= $data['deskripsi']; ?>"></textarea>
                     <label for="floatingTextarea">Isi Artikel</label>
                   </div>
                   <div class="input-group flex-nowrap mb-3">
-                    <input type="file" class="form-control" placeholder="Gambar" aria-label="gambar" name="image"
+                    <input disabled type="file" class="form-control" placeholder="Gambar" aria-label="gambar" name="image"
                       aria-describedby="addon-wrapping">
                   </div>
                   <div class="input-group flex-nowrap mb">
-                    <button type="submit" class="btn btn-primary ms-3">create</button>
+                    <button type="submit" class="btn btn-primary ms-3">update</button>
                   </div>
                 </form>
               </div>

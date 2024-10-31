@@ -107,7 +107,7 @@ if (isset($_SESSION['login'])) {
                     <?php
                     require '../controller/koneksi.php';
 
-                    $sql = "SELECT * FROM post";
+                    $sql = " SELECT post.*, author.nama AS author, kategori.nama AS kategori  FROM post JOIN author ON post.author_id = author.id JOIN kategori ON post.kategori_id = kategori.id";
                     $result = $conn->query($sql);
 
                     if ($result->num_rows > 0) {
@@ -121,7 +121,7 @@ if (isset($_SESSION['login'])) {
                           <td><?= $row['author']; ?></td>
                           <td><?= $row['kategori']; ?></td>
                           <td>
-                            <button class="btn btn-warning">edit</button>
+                            <a class="btn btn-warning" href='edit.php?id=<?= $row['id']; ?>'>edit</a>
                             <a class="btn btn-danger" href='../controller/delete.php?id=<?= $row['id']; ?>'
                               onclick="return alert('hello world')">delete</a>
                           </td>
@@ -175,5 +175,6 @@ if (isset($_POST['logout'])) {
     session_unset();
     session_destroy();
     header("location:../admin/login.php");
+    exit();
   }
 }

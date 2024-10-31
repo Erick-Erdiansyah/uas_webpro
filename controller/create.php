@@ -1,8 +1,4 @@
-<?php
-$dir = "uploads";
-if (mkdir($dir)) {
-  error_log("folder berhasil dibuat");
-}
+<?php session_start();
 
 $target_dir = "uploads/";
 $target_file = $target_dir .
@@ -43,17 +39,45 @@ if (
   $uploadOk = 0;
 }
 
+if ($uploadOk == 0) {
+  echo "File tidak berhasil diunggah.";
+} else {
+  if (
+    move_uploaded_file(
+      $_FILES["fileToUpload"]["tmp_name"],
+      $target_file
+    )
+  ) {
+    error_log("file diupload");
+  } else {
+    error_log("file gagal diupload");
+  }
+}
+
 require 'koneksi.php';
 
+$user = $_SESSION['login'];
+
+$sql = "SELECT * FROM author WHERE nama = ?";
+$stmt = $conn->prepare($sql);
+
+$stmt->bind_param("s", $user);
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+$row = $result->fetch_array();
+
+$author = $row['id'];
 $judul = $_POST['judul'];
 $deskripsi = $_POST['deskripsi'];
-$author = $_POST['author'];
 $kategori = $_POST['kategori'];
 $image = basename($_FILES["image"]["name"]);
 
 
 
-$sql = "INSERT INTO post (judul, deskripsi,author,kategori,image) VALUES ('$judul', '$deskripsi','$author','$kategori','$image')";
+$sql = "INSERT INTO post (judul, deskripsi,image,author_id,kategori_id) VALUES ('$judul', '$deskripsi','$image','$author','$kategori')";
 if ($conn->query($sql) === TRUE) {
   header("location:../admin/index.php");
 } else {

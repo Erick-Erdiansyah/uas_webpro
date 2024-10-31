@@ -36,9 +36,9 @@ try {
   }
 
   $sql_kategori = "CREATE TABLE IF NOT EXISTS kategori (
-        id INT(2) PRIMARY KEY AUTO_INCREMENT,
-        nama VARCHAR(50)
-    )";
+    id INT(2) PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(50) UNIQUE
+  )";
 
   if ($conn->query($sql_kategori) === TRUE) {
     error_log("Kategori table created successfully.");
@@ -64,6 +64,21 @@ try {
   } else {
     die("Error creating 'post' table: {$conn->error}");
   }
+
+  $categories = ["technology", "lifestyle", "Design"];
+
+  $values = [];
+  foreach ($categories as $category) {
+    $values[] = "('$category')";
+  }
+  $sql_insert_categories = "INSERT IGNORE INTO kategori (nama) VALUES " . implode(',', $values);
+
+  if ($conn->query($sql_insert_categories) === TRUE) {
+    error_log("kategori sudah ada");
+  } else {
+    error_log("error saat menambahkan kategori");
+  }
+
 
 } catch (Exception $exception) {
   error_log("Error: " . $exception->getMessage());
