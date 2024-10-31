@@ -10826,3 +10826,7 @@ input:checked + .mode-container i.gg-moon {
 }
 
 /*-- //dark and light mode styling --*/
+
+p .fs-1{
+  font-size: large;
+}

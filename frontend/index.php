@@ -80,22 +80,22 @@ Author URL: http://w3layouts.com
             <!-- /search popup -->
           </div>
           <!--//search-right-->
-        <!-- toggle switch for light and dark theme -->
-        <div class="mobile-position">
-          <nav class="navigation">
-            <div class="theme-switch-wrapper">
-              <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox">
-                <div class="mode-container">
-                  <i class="gg-sun"></i>
-                  <i class="gg-moon"></i>
-                </div>
-              </label>
-            </div>
-          </nav>
+          <!-- toggle switch for light and dark theme -->
+          <div class="mobile-position">
+            <nav class="navigation">
+              <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                  <input type="checkbox" id="checkbox">
+                  <div class="mode-container">
+                    <i class="gg-sun"></i>
+                    <i class="gg-moon"></i>
+                  </div>
+                </label>
+              </div>
+            </nav>
+          </div>
+          <!-- //toggle switch for light and dark theme -->
         </div>
-        <!-- //toggle switch for light and dark theme -->
-      </div>
     </nav>
     <!--//nav-->
   </header>
@@ -116,11 +116,14 @@ Author URL: http://w3layouts.com
 
             if ($result->num_rows > 0) {
               while ($row = $result->fetch_assoc()) {
+                $dateCreated = new DateTime($row['date_created']);
+
+                $formattedDate = $dateCreated->format('m/d/Y');
                 ?>
                 <div class="grids5-info img-block-mobile">
                   <div class="blog-info align-self">
                     <span class="category"><?= $row['kategori']; ?></span>
-                    <a href="#blog-single" class="blog-desc mt-0"><?= $row['judul']; ?>
+                    <a href='read.php?id=<?= $row['id']; ?>' class="blog-desc mt-0"><?= $row['judul']; ?>
                     </a>
                     <p><?= $row['deskripsi']; ?></p>
                     <div class="author align-items-center mt-3 mb-1">
@@ -128,14 +131,14 @@ Author URL: http://w3layouts.com
                     </div>
                     <ul class="blog-meta">
                       <li class="meta-item blog-lesson">
-                        <span class="meta-value"> April 13, 2020 </span>
+                        <span class="meta-value"> <?= $formattedDate; ?></span>
                       </li>
                       <li class="meta-item blog-students">
                         <span class="meta-value"> <?= $row['read_count']; ?> read</span>
                       </li>
                     </ul>
                   </div>
-                  <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img
+                  <a href='read.php?id=<?= $row['id']; ?>' class="d-block zoom mt-md-0 mt-3"><img
                       src="../controller/uploads/<?= $row['image']; ?>" alt=""
                       class="img-fluid radius-image news-image"></a>
                 </div>
