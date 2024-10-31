@@ -42,15 +42,9 @@ if (
 if ($uploadOk == 0) {
   echo "File tidak berhasil diunggah.";
 } else {
-  if (
-    move_uploaded_file(
-      $_FILES["fileToUpload"]["tmp_name"],
-      $target_file
-    )
-  ) {
-    error_log("file diupload");
-  } else {
-    error_log("file gagal diupload");
+  // Attempt to move the uploaded file
+  if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+    error_log("File diupload: $target_file");
   }
 }
 

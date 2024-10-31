@@ -83,7 +83,7 @@ if (isset($_SESSION['login'])) {
               <div class="card-body">
                 <form action="../controller/create.php" method="POST" enctype="multipart/form-data">
                   <div class="input-group flex-nowrap mb-3">
-                    <input type="text" class="form-control" id="dropdownInput" name="kategori" placeholder="Select a category"
+                    <input aria-readonly="true" type="text" class="form-control" id="dropdownInput" name="kategori" placeholder="Select a category"
                       aria-label="Input with dropdown" readonly />
                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                       data-bs-toggle="dropdown" aria-expanded="false">
