@@ -1,4 +1,8 @@
 <?php
+$dir = "uploads";
+if (mkdir($dir)) {
+  error_log("folder berhasil dibuat");
+}
 
 $target_dir = "uploads/";
 $target_file = $target_dir .
