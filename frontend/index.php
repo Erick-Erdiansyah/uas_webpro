@@ -28,9 +28,9 @@ Author URL: http://w3layouts.com
                 <a class="navbar-brand" href="index.html">
                     <span class="fa fa-pencil-square-o"></span> Web Programming Blog</a>
                 <!-- if logo is image enable this   
-						<a class="navbar-brand" href="#index.html">
-							<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-						</a> -->
+                        <a class="navbar-brand" href="#index.html">
+                            <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+                        </a> -->
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -124,147 +124,46 @@ Author URL: http://w3layouts.com
                 <div class="col-lg-9 most-recent">
                     <h3 class="section-title-left">Most Recent posts </h3>
                     <div class="list-view ">
-                        <div class="grids5-info img-block-mobile">
-                            <div class="blog-info align-self">
-                                <span class="category">Technology</span>
-                                <a href="#blog-single" class="blog-desc mt-0">cara memelihara diana
-                                </a>
-                                <p>diana adalah seorang pembunuh iya.</p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">hahahah</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6 read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/8.jpg"
-                                    alt="" class="img-fluid radius-image news-image"></a>
-                        </div>
-                        <!-- <div class="grids5-info img-block-mobile">
-                            <div class="blog-info align-self">
-                                <span class="category">Technology</span>
-                                <a href="#blog-single" class="blog-desc mt-0">Curated Collection Post : 8 Examples of
-                                    Evolution in Action
-                                </a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur accusamus
-                                    voluptas. Mollitia, natus ipsam maiores placeat elit.</p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6 read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/8.jpg"
-                                    alt="" class="img-fluid radius-image news-image"></a>
-                        </div> -->
+                        <?php
+                        require '../controller/koneksi.php';
 
-                        <div class="grids5-info img-block-mobile mt-5">
-                            <div class="blog-info align-self">
-                                <span class="category">Lifestyle</span>
-                                <a href="#blog-single" class="blog-desc mt-0">The Key Benefits of Studying Online
-                                    [Infographic]
-                                </a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur accusamus
-                                    voluptas. Mollitia, natus ipsam maiores beatae elit.</p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6 read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/9.jpg"
-                                    alt="" class="img-fluid radius-image news-image"></a>
-                        </div>
+                        $sql = "SELECT * FROM post";
+                        $result = $conn->query($sql);
 
-                        <div class="grids5-info img-block-mobile mt-5">
-                            <div class="blog-info align-self">
-                                <span class="category">Lifestyle</span>
-                                <a href="#blog-single" class="blog-desc mt-0">How to Write a Blog Post: A Step-by-Step
-                                    Guide
-                                </a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur accusamus
-                                    voluptas. Mollitia, natus ipsam maiores beatae elit.</p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                ?>
+                                <div class="grids5-info img-block-mobile">
+                                    <div class="blog-info align-self">
+                                        <span class="category"><?= $row['kategori']; ?></span>
+                                        <a href="#blog-single" class="blog-desc mt-0"><?= $row['judul']; ?>
+                                        </a>
+                                        <p><?= $row['deskripsi']; ?></p>
+                                        <div class="author align-items-center mt-3 mb-1">
+                                            <a href="#author"><?= $row['author']; ?></a> in <a
+                                                href="#url"><?= $row['kategori']; ?></a>
+                                        </div>
+                                        <ul class="blog-meta">
+                                            <li class="meta-item blog-lesson">
+                                                <span class="meta-value"> April 13, 2020 </span>
+                                            </li>
+                                            <li class="meta-item blog-students">
+                                                <span class="meta-value"> 6 read</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/8.jpg"
+                                            alt="" class="img-fluid radius-image news-image"></a>
                                 </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6 read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/16.jpg"
-                                    alt="" class="img-fluid radius-image news-image"></a>
-                        </div>
-
-                        <div class="grids5-info img-block-mobile mt-5">
-                            <div class="blog-info align-self">
-                                <span class="category">Technology</span>
-                                <a href="#blog-single" class="blog-desc mt-0">Ivy Goes Mobile With New App for Designers
-                                </a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur accusamus
-                                    voluptas. Mollitia, natus ipsam maiores beatae elit.</p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6 read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/14.jpg"
-                                    alt="" class="img-fluid radius-image news-image"></a>
-                        </div>
-
-                        <div class="grids5-info img-block-mobile mt-5">
-                            <div class="blog-info align-self">
-                                <span class="category">Lifestyle </span>
-                                <a href="#blog-single" class="blog-desc mt-0">What I Wish I Had Known Before Writing My
-                                    First Book
-                                </a>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt tenetur accusamus
-                                    voluptas. Mollitia, natus ipsam maiores beatae elit.</p>
-                                <div class="author align-items-center mt-3 mb-1">
-                                    <a href="#author">Johnson smith</a> in <a href="#url">Design</a>
-                                </div>
-                                <ul class="blog-meta">
-                                    <li class="meta-item blog-lesson">
-                                        <span class="meta-value"> April 13, 2020 </span>
-                                    </li>
-                                    <li class="meta-item blog-students">
-                                        <span class="meta-value"> 6 read</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="#blog-single" class="d-block zoom mt-md-0 mt-3"><img src="assets/images/15.jpg"
-                                    alt="" class="img-fluid radius-image news-image"></a>
-                        </div>
-
+                                <?php
+                            }
+                        } else {
+                            echo "0 hasil";
+                        }
+                        $conn->close();
+                        ?>
                     </div>
+
                     <!-- pagination -->
                     <div class="pagination-wrapper mt-5">
                         <ul class="page-pagination">
@@ -374,8 +273,10 @@ Author URL: http://w3layouts.com
         <div class="footer-content py-lg-5 py-4 text-center">
             <div class="container">
                 <div class="copy-right">
-                    <h6>© 2024 Web Programming Blog . Made by <i>(your name)</i> with <span class="fa fa-heart" aria-hidden="true"></span><br>Designed by
-                        <a href="https://w3layouts.com">W3layouts</a> </h6>
+                    <h6>© 2024 Web Programming Blog . Made by <i>(your name)</i> with <span class="fa fa-heart"
+                            aria-hidden="true"></span><br>Designed by
+                        <a href="https://w3layouts.com">W3layouts</a>
+                    </h6>
                 </div>
                 <ul class="author-icons mt-4">
                     <li><a class="facebook" href="#url"><span class="fa fa-facebook" aria-hidden="true"></span></a>
